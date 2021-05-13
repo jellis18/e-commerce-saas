@@ -87,7 +87,7 @@ const OrderScreen = ({ match }) => {
               {order.isDelivered ? (
                 <Message variant="success">
                   Delivered on{' '}
-                  {moment(order.delliveredAt).format('MMMM Do YYYY, h:mm a')}
+                  {moment(order.deliveredAt).format('MMMM Do YYYY, h:mm a')}
                 </Message>
               ) : (
                 <Message variant="warning">Not Delivered</Message>
