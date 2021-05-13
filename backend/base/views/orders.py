@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -70,3 +72,13 @@ def get_order_by_id(request, pk):
             serializer = OrderSerializer(order, many=False)
             return Response(serializer.data)
         return Response({"detail": "Not authorized"}, status=status.HTTP_403_FORBIDDEN)
+
+
+@api_view(["PUT"])
+@permission_classes([IsAuthenticated])
+def update_order_to_paid(request, pk):
+    order = Order.objects.get(_id=pk)
+    order.isPaid = True
+    order.paidAt = datetime.now()
+    order.save()
+    return Response("Order was paid")
