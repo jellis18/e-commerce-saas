@@ -29,7 +29,7 @@ def add_order_items(request):
 
     # create shipping address
     shipping_address = data["shippingAddress"]
-    shipping = ShippingAddress.objects.create(
+    shipping = ShippingAddress.objects.create(  # noqa: F841
         order=order,
         address=shipping_address["address"],
         city=shipping_address["city"],
@@ -55,3 +55,18 @@ def add_order_items(request):
 
     serializer = OrderSerializer(order, many=False)
     return Response(serializer.data)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def get_order_by_id(request, pk):
+    user = request.user
+    try:
+        order = Order.objects.get(_id=pk)
+    except Exception:
+        return Response({"detail": "Order does not exist"}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        if user.is_staff or order.user == user:
+            serializer = OrderSerializer(order, many=False)
+            return Response(serializer.data)
+        return Response({"detail": "Not authorized"}, status=status.HTTP_403_FORBIDDEN)
