@@ -1,0 +1,59 @@
+version: '3.5'
+
+services:
+  api:
+    container_name: api
+    image: proshop-api:latest
+    environment:
+      DB_NAME: ${DB_NAME:-proshop}
+      DB_USER: ${DB_NAME:-postgres}
+      DB_PASSWORD: ${DB_NAME:-postgres}
+      DB_HOST: postgres
+    volumes:
+      - ./backend/:/app/
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+    networks:
+      - proshop
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-proshop}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - proshop
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+      - pgadmin:/root/.pgadmin
+    ports:
+      - '${PGADMIN_PORT:-5050}:80'
+    networks:
+      - proshop
+    restart: unless-stopped
+
+networks:
+  proshop:
+    driver: bridge
+    name: proshop
+
+volumes:
+  postgres:
+    name: postgres
+  pgadmin:
+    name: pgadmin
