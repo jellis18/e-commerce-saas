@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_FAIL,
@@ -17,6 +15,7 @@ import {
   USER_LOGOUT,
 } from '../constants/userConstants';
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants';
+import { api } from '../api';
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -25,7 +24,7 @@ export const login = (email, password) => async (dispatch) => {
     });
 
     const config = { headers: { 'Content-type': 'application/json' } };
-    const { data } = await axios.post(
+    const { data } = await api().post(
       '/api/users/login/',
       {
         username: email,
@@ -60,7 +59,7 @@ export const register = (name, email, password) => async (dispatch) => {
     });
 
     const config = { headers: { 'Content-type': 'application/json' } };
-    const { data } = await axios.post(
+    const { data } = await api().post(
       '/api/users/register/',
       {
         name,
@@ -99,7 +98,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/users/${id}`, config);
+    const { data } = await api().get(`/api/users/${id}`, config);
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -129,7 +128,7 @@ export const updateUserDetails = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(
+    const { data } = await api().put(
       `/api/users/profile/update/`,
       user,
       config

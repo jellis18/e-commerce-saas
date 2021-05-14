@@ -19,6 +19,18 @@ services:
     networks:
       - proshop
 
+  ui:
+    container_name: ui
+    image: proshop-ui:latest
+    volumes:
+      - ./frontend/:/app/
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
+    networks:
+      - proshop
+
   postgres:
     container_name: postgres
     image: postgres:latest

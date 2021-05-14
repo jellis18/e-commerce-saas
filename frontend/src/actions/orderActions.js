@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import {
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_FAIL,
@@ -17,6 +15,7 @@ import {
   ORDER_LIST_MY_RESET,
 } from '../constants/orderConstants';
 import { CART_CLEAR_ITEMS } from '../constants/cartConstants';
+import { api } from '../api';
 
 export const createOrder = (order) => async (dispatch, getState) => {
   try {
@@ -35,7 +34,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`/api/orders/add/`, order, config);
+    const { data } = await api().post(`/api/orders/add/`, order, config);
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
     dispatch({ type: CART_CLEAR_ITEMS, payload: data });
     localStorage.removeItem('cartItems');
@@ -67,7 +66,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/orders/${id}/`, config);
+    const { data } = await api().get(`/api/orders/${id}/`, config);
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -97,7 +96,7 @@ export const payOrder = (id, paymentResults) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(
+    const { data } = await api().put(
       `/api/orders/${id}/pay/`,
       paymentResults,
       config
@@ -131,7 +130,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get(`/api/orders/myorders/`, config);
+    const { data } = await api().get(`/api/orders/myorders/`, config);
     dispatch({ type: ORDER_LIST_MY_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
