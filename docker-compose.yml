@@ -4,6 +4,7 @@ services:
   api:
     container_name: api
     image: proshop-api:latest
+    command: python manage.py runserver 0.0.0.0:8000
     environment:
       DB_NAME: ${DB_NAME:-proshop}
       DB_USER: ${DB_NAME:-postgres}
