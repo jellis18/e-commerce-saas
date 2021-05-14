@@ -1,0 +1,51 @@
+version: '3.5'
+
+services:
+  api:
+    container_name: api
+    image: proshop-api:latest
+    environment:
+      DB_NAME: ${DB_NAME:-proshop}
+      DB_USER: ${DB_NAME:-postgres}
+      DB_PASSWORD: ${DB_NAME:-postgres}
+      DB_HOST: postgres
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+    networks:
+      - proshop
+
+  ui:
+    container_name: ui
+    image: proshop-ui-prod:latest
+    ports:
+      - 8080:8080
+    depends_on:
+      - api
+    networks:
+      - proshop
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-proshop}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - proshop
+    restart: unless-stopped
+
+networks:
+  proshop:
+    driver: bridge
+    name: proshop
+
+volumes:
+  postgres:
+    name: postgres
