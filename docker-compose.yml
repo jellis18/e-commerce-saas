@@ -7,8 +7,8 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     environment:
       DB_NAME: ${DB_NAME:-proshop}
-      DB_USER: ${DB_NAME:-postgres}
-      DB_PASSWORD: ${DB_NAME:-postgres}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
       DB_HOST: postgres
     volumes:
       - ./backend/:/app/
@@ -22,6 +22,8 @@ services:
   ui:
     container_name: ui
     image: proshop-ui:latest
+    environment:
+      API_BASE_URL: http://api:8000
     volumes:
       - ./frontend/:/app/
     ports:
