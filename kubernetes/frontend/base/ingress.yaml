@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: proshop-ui
+  namespace: proshop
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /admin
+            backend:
+              serviceName: proshop-api
+              servicePort: 8000
+          - path: /static/admin/
+            backend:
+              serviceName: proshop-api
+              servicePort: 8000
+          - path: /static/rest_framework/
+            backend:
+              serviceName: proshop-api
+              servicePort: 8000
+          - path: /images/
+            backend:
+              serviceName: proshop-api
+              servicePort: 8000
+          - path: /static/
+            backend:
+              serviceName: proshop-ui
+              servicePort: 3000
+          - path: /
+            backend:
+              serviceName: proshop-ui
+              servicePort: 3000

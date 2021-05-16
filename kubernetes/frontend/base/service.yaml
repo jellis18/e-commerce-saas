@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: proshop-ui
+  namespace: proshop
+  labels:
+    app: proshop-ui
+spec:
+  type: ClusterIP
+  selector:
+    app: proshop-ui
+  ports:
+    - port: 3000
+      targetPort: 3000
+      name: app
