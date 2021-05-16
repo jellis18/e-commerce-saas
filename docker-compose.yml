@@ -21,7 +21,7 @@ services:
 
   ui:
     container_name: ui
-    image: proshop-ui:latest
+    image: proshop-ui-dev:latest
     environment:
       API_BASE_URL: http://api:8000
     volumes:

@@ -27,7 +27,8 @@ SECRET_KEY = "django-insecure-9zeatj9@j+(46*0a18owb@yq2e5==v-&e@9b0rp3md5p^mfio7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# WARNING: don't really want to do this but need it for kubernetes for now
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
