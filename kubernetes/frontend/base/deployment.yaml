@@ -21,10 +21,8 @@ spec:
     spec:
       containers:
         - name: proshop-ui
-          #image: 402008821676.dkr.ecr.us-east-2.amazonaws.com/proshop/ui
-          #imagePullPolicy: Always
-          image: proshop-ui
-          imagePullPolicy: Never
+          image: 402008821676.dkr.ecr.us-east-2.amazonaws.com/proshop/ui
+          imagePullPolicy: Always
           envFrom:
             - configMapRef:
                 name: proshop-ui

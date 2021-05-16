@@ -10,6 +10,6 @@ resources:
 
 configMapGenerator:
   - literals:
-      - API_BASE_URL=http://proshop-api.proshop.svc.cluster.local:8000
+      - API_BASE_URL=""
     name: proshop-ui
     namespace: proshop

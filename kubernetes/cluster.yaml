@@ -1,0 +1,14 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: proshop
+  region: us-east-2
+  version: "1.19"
+nodeGroups:
+  - amiFamily: AmazonLinux2
+    desiredCapacity: 5
+    instanceType: t2.micro
+    name: linux-nodes
+    ssh:
+      allow: true

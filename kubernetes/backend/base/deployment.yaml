@@ -21,26 +21,12 @@ spec:
     spec:
       containers:
         - name: proshop-api
-          #image: 402008821676.dkr.ecr.us-east-2.amazonaws.com/proshop/api
-          #imagePullPolicy: Always
-          image: proshop-api
-          imagePullPolicy: Never
-          resources: {}
+          image: 402008821676.dkr.ecr.us-east-2.amazonaws.com/proshop/api
+          imagePullPolicy: Always
           command: ["bash", "-c", "python manage.py runserver 0.0.0.0:8000"]
           envFrom:
             - configMapRef:
                 name: proshop-api
-          #env:
-          #  - name: DB_USER
-          #    valueFrom:
-          #      secretKeyRef:
-          #        name: proshop-api-secrets
-          #        key: postgres-username
-          #  - name: DB_PASSWORD
-          #    valueFrom:
-          #      secretKeyRef:
-          #        name: proshop-api-secrets
-          #        key: postgres-password
           ports:
             - containerPort: 8000
               name: app
