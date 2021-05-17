@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: proshop
+  annotations:
+    argocd.argoproj.io/manifest-generate-paths: ./frontend;./backend;./namespaces;./postgres
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jellis18/e-commerce-saas.git
+    targetRevision: HEAD
+    path: kubernetes
+    directory:
+      recurse: true
+
+  destination:
+    name: in-cluster
+    namespace: proshop
