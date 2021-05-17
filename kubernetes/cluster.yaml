@@ -7,7 +7,9 @@ metadata:
   version: "1.19"
 nodeGroups:
   - amiFamily: AmazonLinux2
-    desiredCapacity: 5
+    desiredCapacity: 10
+    minSize: 5
+    maxSize: 15
     instanceType: t2.micro
     name: linux-nodes
     ssh:
