@@ -3,16 +3,12 @@ kind: Application
 metadata:
   name: proshop
   namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
-  destination:
-    namespace: argocd
-    server: in-cluster
   project: default
+  destination:
+    name: in-cluster
+    namespace: proshop
   source:
     repoURL: https://github.com/jellis18/e-commerce-saas.git
     targetRevision: HEAD
-    path: argocd/apps
-    directory:
-      recurse: true
+    path: kubernetes/frontend/base
