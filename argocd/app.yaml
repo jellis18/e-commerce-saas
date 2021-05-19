@@ -16,3 +16,6 @@ spec:
     path: argocd/apps
     directory:
       recurse: true
+  syncPolicy:
+    automated:
+      prune: false
