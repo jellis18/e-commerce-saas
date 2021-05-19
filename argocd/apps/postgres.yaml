@@ -11,4 +11,4 @@ spec:
   source:
     repoURL: https://github.com/jellis18/e-commerce-saas.git
     targetRevision: HEAD
-    path: kubernetes/postres/base
+    path: kubernetes/postgres/base
