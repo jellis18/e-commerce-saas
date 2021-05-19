@@ -13,4 +13,4 @@ spec:
     targetRevision: HEAD
     path: kubernetes/frontend/base
     kustomize:
-      version: v3.5.4
+      namePrefix: kustomize
