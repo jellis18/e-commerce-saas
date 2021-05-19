@@ -8,7 +8,7 @@ metadata:
 spec:
   destination:
     namespace: argocd
-    server: in-cluster
+    server: https://kubernetes.default.svc
   project: default
   source:
     repoURL: https://github.com/jellis18/e-commerce-saas.git

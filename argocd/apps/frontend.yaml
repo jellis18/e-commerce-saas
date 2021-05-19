@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   destination:
-    name: in-cluster
+    name: https://kubernetes.default.svc
     namespace: proshop
   source:
     repoURL: https://github.com/jellis18/e-commerce-saas.git
