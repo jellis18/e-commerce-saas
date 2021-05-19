@@ -12,3 +12,7 @@ spec:
     repoURL: https://github.com/jellis18/e-commerce-saas.git
     targetRevision: HEAD
     path: kubernetes/postgres/base
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
