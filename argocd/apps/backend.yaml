@@ -12,3 +12,5 @@ spec:
     repoURL: https://github.com/jellis18/e-commerce-saas.git
     targetRevision: HEAD
     path: kubernetes/backend/base
+    kustomize:
+      version: v3.5.4
