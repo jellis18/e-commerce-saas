@@ -5,3 +5,9 @@ terraform {
     region = "us-east-2"
   }
 }
+
+# Configure the GitHub Provider
+# Use token through environment variable
+provider "github" {
+
+}
