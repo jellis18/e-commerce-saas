@@ -2,12 +2,8 @@ name: CI targets
 
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
-  release:
-    types:
-      - published
+    tags:
+      - "*"
 
 defaults:
   run:
@@ -42,7 +38,7 @@ jobs:
         run: |
           docker build -f docker/backend/Dockerfile \
             -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          #docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
       - name: Build, tag, and push UI image to Amazon ECR
@@ -54,5 +50,5 @@ jobs:
         run: |
           docker build -f docker/frontend/Dockerfile \
             -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          #docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
