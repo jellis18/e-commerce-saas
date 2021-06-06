@@ -12,5 +12,11 @@ nodeGroups:
     maxSize: 15
     instanceType: t2.micro
     name: linux-nodes
+    iam:
+      attachPolicyARNs:
+        - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+        - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+        - arn:aws:iam::402008821676:policy/EC2AccessS3
     ssh:
       allow: true

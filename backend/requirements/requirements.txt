@@ -3,5 +3,8 @@ djangorestframework==3.12.4
 django-cors-headers==3.7.0
 pillow==8.2.0
 djangorestframework-simplejwt==4.6.0
+django-storages==1.11.1
 psycopg2-binary==2.8.6
 gunicorn==20.1.0
+boto3==1.17.88
+whitenoise==5.2.0
