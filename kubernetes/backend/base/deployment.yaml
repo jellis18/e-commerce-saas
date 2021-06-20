@@ -30,12 +30,4 @@ spec:
           ports:
             - containerPort: 8000
               name: app
-      initContainers:
-        - name: init-backend
-          image: 402008821676.dkr.ecr.us-east-2.amazonaws.com/proshop/api
-          imagePullPolicy: Always
-          command: ["./entrypoint.sh"]
-          envFrom:
-            - configMapRef:
-                name: proshop-api
       restartPolicy: Always

@@ -14,6 +14,7 @@ RUN set -ex && \
 
 COPY --chown=$USER:$USER backend/backend /app/backend
 COPY --chown=$USER:$USER backend/base /app/base
+COPY --chown=$USER:$USER backend/static /app/static
 COPY --chown=$USER:$USER backend/manage.py /app/manage.py
 COPY --chown=$USER:$USER docker/backend/entrypoint.sh /app/entrypoint.sh
 
@@ -23,4 +24,5 @@ EXPOSE 8000
 
 WORKDIR /app
 
+ENTRYPOINT [ "./entrypoint.sh" ]
 CMD ["gunicorn", "backend.wsgi", "--bind", "0.0.0.0:8000"]
