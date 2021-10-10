@@ -20,7 +20,7 @@ to follow along.
 Once the basic site was build the next step towards production was to containerize the application. To do this I used [Docker](https://www.docker.com/) to containerize the [backend](https://github.com/jellis18/e-commerce-saas/tree/master/docker/backend) 
 and [frontend](https://github.com/jellis18/e-commerce-saas/tree/master/docker/frontend). For the frontend I created a "development" and a "production" container. The development container just runs `npm` as you would normally during development and allows for hot-reloads. For the production conatiner I used [NGINX](https://www.nginx.com/) as reverse-proxy to handle the communication between frontend and backend.
 
-To handle the networking and connections to the Postgres database I used [Docker Compose](https://docs.docker.com/compose/) creating both a [dev](https://github.com/jellis18/e-commerce-saas/blob/master/docker-compose.yml) [production](https://github.com/jellis18/e-commerce-saas/blob/master/docker-compose-production.yml) deployment. 
+To handle the networking and connections to the Postgres database I used [Docker Compose](https://docs.docker.com/compose/) creating both a [dev](https://github.com/jellis18/e-commerce-saas/blob/master/docker-compose.yml) and [production](https://github.com/jellis18/e-commerce-saas/blob/master/docker-compose-production.yml) deployment. 
 
 Depending on the usecase, this could be the end. You could deploy with docker compose on EC2, Heroku, etc. But I wanted to go further...
 
