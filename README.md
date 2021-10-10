@@ -46,6 +46,9 @@ Getting things deployed with Kubernetes took a bit of trial and error. As an ove
 
 ### GitOps with Argo CD
 
-Because I love automation and the idea of GitOps (git repo is single source of truth), I wanted to try out [Argo CD](https://argo-cd.readthedocs.io/en/stable/). Because we are using multiple kubernetes deployments I used the ["app of apps" setup](https://github.com/jellis18/e-commerce-saas/blob/master/argocd/app.yaml) so that we can make sure all of our services are deployed. By deploying Argo CD in the EKS cluster and configuring it to look at this repo, it will make sure that whatever kubernetes manifests are in this git repo are the ones deployed in the EKS cluster. So once everything is setup you just have to change the yamls in this git repository and your changes will automatically be deployed. Awesome!
+Because I love automation and the idea of GitOps (git repo is single source of truth), I wanted to try out [Argo CD](https://argo-cd.readthedocs.io/en/stable/). Because we are using multiple kubernetes deployments I used the ["app of apps" setup](https://github.com/jellis18/e-commerce-saas/blob/master/argocd/app.yaml) so that we can make sure all of our services are deployed. By deploying Argo CD in the EKS cluster and configuring it to look at this repo, it will make sure that whatever kubernetes manifests are in this git repo are the ones deployed in the EKS cluster. So once everything is setup you just have to change the yamls in this git repository and your changes will automatically be deployed. Awesome! You can see it deployed here (it is shut down now because AWS is expensive!):
+
+![image](https://user-images.githubusercontent.com/3458354/136714327-fd19a082-6923-418c-9e52-97358f4a7f87.png)
+
 
 
